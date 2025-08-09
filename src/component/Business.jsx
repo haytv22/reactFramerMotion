@@ -1,13 +1,19 @@
 import React from "react";
 import { features } from "../constants";
 import { Button, FeatureCard } from "../component";
+import { motion } from "framer-motion";
 function Business() {
   return (
     <section
       id="features"
       className="w-full flex justify-between items-center lg:flex-row flex-col lg:space-x-20 space-y-10"
     >
-      <div className="flex flex-col items-start justify-center space-y-10">
+      <motion.div
+        initial={{ x: -30, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col items-start justify-center space-y-10"
+      >
         <h2 className="font-poppins font-semibold lg:text-[48px] text-[40px] text-white xs:leading-[76.8px] leading-[66.8px] w-full">
           You do the business,
           <br className="sm:block hidden" /> we’ll handle the money.
@@ -18,12 +24,13 @@ function Business() {
           of credit cards on the market.
         </p>
         <Button></Button>
-      </div>
+      </motion.div>
       <div className="flex space-y-3 flex-col lg:w-[40%] w-[100%]">
         {features.map((feature, index) => {
           return (
             <FeatureCard
               key={feature.id}
+              index={index}
               icon={feature.icon}
               title={feature.title}
               content={feature.content}

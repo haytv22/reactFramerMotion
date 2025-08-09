@@ -1,24 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { logo, close, menu } from "../assets";
 import { navLinks } from "../constants";
+import { motion, useAnimation } from "framer-motion";
 
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const controlsImg = useAnimation();
+  const controlsMenu = useAnimation();
+  useEffect(() => {
+    controlsImg
+      .start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.8 },
+      })
+      .then(() => {
+        controlsMenu.start((i) => ({
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.3,
+            delay: 0.2 * i,
+          },
+        }));
+      });
+  }, []);
   return (
     <nav className="w-full flex py-6 justify-between items-center ">
-      <img src={logo} alt="" className="w-[124px] h-[32px]" />
-      <ul className="list-none sm:flex hidden justify-end items-center flex-1 space-x-10">
+      <motion.img
+        src={logo}
+        alt=""
+        className="w-[124px] h-[32px]"
+        initial={{ opacity: 0, x: "-50%" }}
+        animate={controlsImg}
+        transition={{ duration: 0.8 }}
+      ></motion.img>
+      <motion.ul className="list-none sm:flex hidden justify-end items-center flex-1 space-x-10">
         {navLinks.map((nav, index) => {
           return (
-            <li
+            <motion.li
+              initial={{ opacity: 0, y: "-50%" }}
+              custom={index}
+              animate={controlsMenu}
               key={nav.id}
               className="font-poppins font-normal cursor-pointer text-[16px] text-white"
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
+            </motion.li>
           );
         })}
-      </ul>
+      </motion.ul>
       <div className="sm:hidden flex flex-1 justify-end items-center">
         <img
           className="size-[28px] object-contain"

@@ -1,8 +1,14 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-function featurCard({ icon, title, content }) {
+function featurCard({ icon, title, content, index }) {
   return (
-    <div className="flex flex-row p-6 rounded-[20px] feature-card ">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 * index }}
+      className="flex flex-row p-6 rounded-[20px] feature-card "
+    >
       <div className="size-[64px] rounded-full flex justify-center items-center bg-[#09977C1A]">
         <img src={icon} alt="" className="size-[50%] object-contain" />
       </div>
@@ -14,7 +20,7 @@ function featurCard({ icon, title, content }) {
           {content}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

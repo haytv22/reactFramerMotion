@@ -1,9 +1,15 @@
 import React from "react";
 import Button from "./Button";
+import { motion } from "framer-motion";
 
 function CTA() {
   return (
-    <div className="box-shadow flex flex-col md:flex-row items-start md:gap-0 gap-5 md:items-center justify-center w-full h-[293px] bg-black-gradient-2 rounded-[20px] p-[50px] md:p-[70px]">
+    <motion.div
+      initial={{ opacity: 0, y: 100, scale: 0.5 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1, type: "spring" }}
+      className="box-shadow flex flex-col md:flex-row items-start md:gap-0 gap-5 md:items-center justify-center w-full h-[293px] bg-black-gradient-2 rounded-[20px] p-[50px] md:p-[70px]"
+    >
       <div className="flex flex-col gap-5 lg:gap-10 items-start justify-center flex-1">
         <h2 className="font-poppins text-[30px] md:text-[48px] leading-[140%] text-[#FFFFFF] font-[600]">
           Let’s try our service now!
@@ -17,7 +23,7 @@ function CTA() {
       <div>
         <Button />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

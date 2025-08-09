@@ -1,9 +1,15 @@
 import React from "react";
 import { quotes } from "../assets";
+import { motion } from "framer-motion";
 
-function FeedBackCard({ content, name, title, img }) {
+function FeedBackCard({ content, name, title, img, index }) {
   return (
-    <div className="p-10 flex flex-col items-start justify-between bg-black-gradient-hover rounded-[20px] w-[320px] h-[345px] md:w-[370px] md:h-[395px]">
+    <motion.div
+      initial={{ x: "80%", opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.3 * index }}
+      className="p-10 flex flex-col items-start justify-between bg-black-gradient-hover rounded-[20px] w-[320px] h-[345px] md:w-[370px] md:h-[395px]"
+    >
       <div>
         <img src={quotes} alt="" />
       </div>
@@ -27,7 +33,7 @@ function FeedBackCard({ content, name, title, img }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
