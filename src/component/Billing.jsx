@@ -5,13 +5,13 @@ function Billing() {
   return (
     <section
       id="product"
-      className="flex md:flex-row flex-col-reverse items-center justify-between w-full "
+      className="flex md:flex-row flex-col-reverse items-center justify-between w-full relative "
     >
       <motion.div
         initial={{ x: -30, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="md:w-[60%] relative"
+        className="md:w-[60%] "
       >
         <img
           src={bill}
